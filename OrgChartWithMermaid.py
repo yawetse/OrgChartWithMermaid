@@ -1,7 +1,6 @@
-import sqlalchemy as db
 from sqlalchemy import create_engine
-from sqlalchemy import Column, Integer, String, Table, ForeignKey
-from sqlalchemy.orm import sessionmaker, relationship
+from sqlalchemy import Column, Integer, String
+from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 import pandas as pd
 
@@ -55,13 +54,13 @@ class OrgChart(object):
 	def getEmployeeCard(self, id):
 		"""Returns a string representation of a user card for user id"""
 		user = self.getUser(id)
-		uid = getUIDString(id)
-		title = user.Title.lower()
-		if 'manager' in title:
+		uid = self.getUIDString(id)
+		uid = self.getUIDString(id)
+		if 'manager' in user.Title:
 			icon = "fa:fa-address-book"
 			shapestart = "["
 			shapeend = "]"
-		elif 'staff' in title:
+		elif 'staff' in user.Title:
 			icon = "fa:fa-user-circle"
 			shapestart = "["
 			shapeend = "]"
@@ -131,6 +130,6 @@ classDef Edmonton fill:#8CC152
 
 def main():
     oc = OrgChart()
-
+	# OrgChart()
 if __name__ == '__main__':
     main()
